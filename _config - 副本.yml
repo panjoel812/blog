@@ -4,7 +4,7 @@
 
 # Site
 title: Panjoel's Blog
-subtitle: '忘记背后，努力面前'
+subtitle: '一句话说得合宜，就如金苹果在银网子里'
 description: '这是一个博客网站，由Panjoel维护。该博客主要分享作者的学习笔记和技术文章，内容涵盖数学、计算机科学、物理等多个领域。'
 keywords:
 author: Panjoel
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blog.panjoel.top
+url: https://panjoel812.github.io
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -43,15 +43,14 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
+syntax_highlighter: highlight.js
 highlight:
-  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
-  enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -97,97 +96,64 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: anzhiyu
+theme: solitude
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  - type: 'baidu_url_submitter'
-  - type: git
-    repo: git@github.com:panjoer/panjoer.github.io      # https://github.com/panjoer/panjoer.github.io.git
-    branch: master
+  type: git
+  repo: git@github.com:812panjoel/panjoel812.github.io.git
+  branch: main
 
-    
+
+markdown:
+    preset: 'default' # 使用的 MD 语法，默认使用的 GFM
+    render:
+        html: true # 渲染 html
+        xhtmlOut: false
+        langPrefix: 'language-' # 在代码块的类名中添加前缀（指定语言时）。
+        breaks: true
+        linkify: true # 如果你写了一个链接而不是 [name](link) 方式，会自动识别为链接并渲染。
+        typographer: true # 将替换常见的印刷元素。
+        quotes: '“”‘’' # 替换文章张的 "" '' 号
+    enable_rules:
+    disable_rules:
+    plugins: # 使用插件
+        - '@renbaoshuo/markdown-it-katex'
+    anchors:
+        level: 2 # 渲染标题的级别（h1,h2,h3）
+        collisionSuffix: ''
+        permalink: true
+        permalinkClass: 'headerlink'
+        permalinkSide: 'left'
+        permalinkSymbol: ''
+        case: 0
+        separator: '-'
+    images: # 图片的一些编译
+        lazyload: true # 是否需要渲染 lazyload
+        prepend_root: false
+        post_asset: false
+    inline: false
+
 # hexo-neat
-## Docs: https://github.com/rozbo/hexo-neat
+# 博文压缩
 neat_enable: true
-# 压缩 html
+# 压缩html
 neat_html:
   enable: true
   exclude:
-    - '**/转转魔方/index.html'
-# 压缩 css  
+# 压缩css  
 neat_css:
   enable: true
   exclude:
-    - '**/转转魔方/style.css'
-    
-# 压缩 js
+    - '**/*.min.css'
+# 压缩js
 neat_js:
   enable: true
   mangle: true
   output:
   compress:
   exclude:
-    - '**/转转魔方/script.js'
     - '**/*.min.js'
     - '**/jquery.fancybox.pack.js'
-    - '**/index.js' 
-
-  
-
-# APlayer
-# https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md
-aplayer:
-  meting: true
-  asset_inject: false
-
-
-# markdown:
-#   plugins:
-#     - "@renbaoshuo/markdown-it-katex"
-
-markdown:
-  render:
-    html: true
-    xhtmlOut: false
-    breaks: true
-    linkify: true
-    typographer: true
-  plugins:
-  anchors:
-    level: 1
-    collisionSuffix: ''
-
-# algolia搜索: https://github.com/LouisBarranqueiro/hexo-algoliasearch
-algolia:
-  appId: "X19QHF7RC1"
-  apiKey: "655795cc5920ccc63e4eb9e643a6778f"
-  adminApiKey: "b2a47e2f85d27beae5b35547fd5f6a1f"
-  chunkSize: 5000
-  indexName: "hexo"
-  fields:
-    - content:strip:truncate,0,200
-    - excerpt:strip
-    - gallery
-    - permalink
-    - photos
-    - slug
-    - tags
-    - title
-
-baidu_url_submit:
-  count: 100                 # 提交最新的多少个链接
-  host: blog.panjoel.top       # 在百度站长平台中添加的域名
-  token: dO4a4ZYsorHeO6lV            # 秘钥
-  path: baidu_urls.txt
-
-
-  kramed:
-  gfm: true
-  pedantic: false
-  sanitize: false
-  tables: true
-  breaks: true
-  smartLists: true
-  smartypants: true
+    - '**/index.js'
